@@ -118,6 +118,18 @@ namespace AnimalShelterApi.Controllers.v1
     }
 
     // DELETE: api/v1/Animals/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult>DeleteReview(int id)
+    {
+      Animal animal = await _db.Animals.FindAsync(id);
+      if (animal == null)
+      {
+        return NotFound();
+      }
+      _db.Animals.Remove(animal);
+      await _db.SaveChangesAsync();
 
+      return NoContent();
+    }
   }
 }
