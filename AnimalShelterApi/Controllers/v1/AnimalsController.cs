@@ -19,7 +19,7 @@ namespace AnimalShelterApi.Controllers.v1
       _db = db;
     }
 
-    // GET api/v1/animals
+    // GET api/v1/Animals
     [HttpGet]
     public async Task<List<Animal>> Get(string name, string type, int minWeight, int maxWeight, string available)
     {
@@ -71,5 +71,21 @@ namespace AnimalShelterApi.Controllers.v1
 
       return animal;
     }
+
+    // POST: api/v1/Animals
+    [HttpPost]
+    public async Task<ActionResult<Animal>> Post(Animal animal)
+    {
+      _db.Animals.Add(animal);
+      await _db.SaveChangesAsync();
+      return CreatedAtAction(nameof(GetAnimal), new { id = animal.AnimalId }, animal);
+    }
+
+
+    // PUT: api/v1/Animals/5
+
+
+    // DELETE: api/v1/Animals/5
+    
   }
 }
