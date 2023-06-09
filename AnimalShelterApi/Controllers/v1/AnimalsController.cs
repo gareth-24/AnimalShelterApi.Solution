@@ -19,7 +19,7 @@ namespace AnimalShelterApi.Controllers.v1
       _db = db;
     }
 
-    // GET api/animals
+    // GET api/v1/animals
     [HttpGet]
     public async Task<List<Animal>> Get(string name, string type, int minWeight, int maxWeight, string available)
     {
@@ -56,6 +56,20 @@ namespace AnimalShelterApi.Controllers.v1
       }
 
       return await query.ToListAsync();
+    }
+
+    // GET: api/v1/Animals/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Animal>> GetAnimal(int id)
+    {
+      Animal animal = await _db.Animals.FindAsync(id);
+
+      if (animal == null)
+      {
+        return NotFound();
+      }
+
+      return animal;
     }
   }
 }
