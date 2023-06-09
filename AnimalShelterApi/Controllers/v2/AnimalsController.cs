@@ -44,7 +44,7 @@ namespace AnimalShelterApi.Controllers.v2
 
       if (maxWeight > 0)
       {
-        query = query.Where(entry => entry.Weight >= maxWeight);
+        query = query.Where(entry => entry.Weight <= maxWeight);
       }
 
       if (available == "true")
