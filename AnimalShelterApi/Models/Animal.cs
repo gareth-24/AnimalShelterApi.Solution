@@ -17,6 +17,6 @@ namespace AnimalShelterApi.Models
     [Required]
     public DateTime IntakeDate { get; set; }
     [Required]
-    public bool AvailablilityStatus { get; set; }
+    public bool AvailabilityStatus { get; set; }
   }
 }
