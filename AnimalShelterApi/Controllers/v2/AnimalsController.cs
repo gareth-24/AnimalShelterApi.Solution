@@ -21,7 +21,8 @@ namespace AnimalShelterApi.Controllers.v2
 
     // GET api/v2/Animals
     [HttpGet]
-    public async Task<List<Animal>> Get(string name, string type, int minWeight, int maxWeight, string available)
+    public async Task<List<Animal>> Get(string name, string type, int minWeight, int maxWeight, string available, int pageNumber = 1, int pageSize = 1000)
+    // by default, the request will not skip any pages and will list up to 1000 results
     {
       IQueryable<Animal> query = _db.Animals.AsQueryable();
 
@@ -53,6 +54,11 @@ namespace AnimalShelterApi.Controllers.v2
       if (available == "false")
       {
         query = query.Where(entry => entry.AvailabilityStatus == false);
+      }
+
+      if (pageNumber > 0 && pageSize > 0)
+      {
+        query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize); 
       }
 
       return await query.ToListAsync();
