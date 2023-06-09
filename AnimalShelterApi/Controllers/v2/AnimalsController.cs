@@ -21,6 +21,7 @@ namespace AnimalShelterApi.Controllers.v2
 
     // GET api/v2/Animals
     [HttpGet]
+    [EnableCors("Policy1")]
     public async Task<List<Animal>> Get(string name, string type, int minWeight, int maxWeight, string available, int pageNumber = 1, int pageSize = 1000)
     // by default, the request will not skip any pages and will list up to 1000 results
     {
