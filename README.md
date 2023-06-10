@@ -79,6 +79,7 @@ DELETE https://localhost:5001/api/{v1/v2}/animals/{id}
 ```
 * Note: `{id}` is a variable and it should be replaced with the id number of the animal you want to GET, PUT, or DELETE.
 * Note: `{v1/v2}` indicates the version of the API you want to use. Version 2 contains all functionality of version 1 but also includes pagination for Get results as well as a randomized search feature.
+* Note: the `/random` endpoint is only enabled for version 2.0
 
 ## Optional Query String Parameters for GET Requests
 
